@@ -26,7 +26,6 @@ public class StartUI {
                 new CreateAction(),  new ShowAllAction(), new ReplaceAction(), new FindbyNameAction(),
                 new FindbyIdAction(), new DeteleAction(), new ExitAction()
         };
-        System.out.println(actions.length + " length");
         new StartUI().init(input, tracker, actions);
     }
 }
