@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 import org.hamcrest.core.IsNull;
 
 public class StartUITest {
+    /**
     @Test
     public void whenAddItem() {
         String[] answers = {"Fix PC", "Fix PC2", "Fix PC3" };
@@ -50,4 +51,5 @@ public class StartUITest {
         Item result = tracker.findById(item.getId());
         assertThat(result, (is(IsNull.nullValue())));
     }
+    **/
 }
