@@ -24,11 +24,12 @@ public class ValidateInput extends ConsoleInput {
         do {
             try {
                 value = super.askInt(question, max);
+                //System.out.println("Yes");
                 invalid = false;
             } catch (IllegalStateException moe) {
-                System.out.println("Please select key from menu.");
+                System.out.println(String.format("Please select key from menu."));
             } catch (NumberFormatException nfe) {
-                System.out.println("Please enter validate data again.");
+                System.out.println(String.format("Please enter validate data again.%n"));
             }
         } while (invalid);
         return value;

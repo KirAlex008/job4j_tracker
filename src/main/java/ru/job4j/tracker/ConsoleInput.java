@@ -18,6 +18,7 @@ public class ConsoleInput implements Input {
 
     @Override
     public int askInt(String question, int max) {
+        // if (question)  попробовать сюда поставить исключение
         int select = askInt(question);
         if (select >= 0 && select < max) {
             return select;
