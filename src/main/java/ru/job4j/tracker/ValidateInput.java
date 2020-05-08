@@ -35,11 +35,10 @@ public class ValidateInput implements Input {
         do {
             try {
                 value = askInt(question);
-                if (value >= 0 && value < max) {
-                    invalid = false;
-                } else {
+                if (value < 0 || value >= max) {
                     throw new IllegalStateException();
                 }
+                invalid = false;
             } catch (IllegalStateException moe) {
                 System.out.println("Please select key from menu.");
             } catch (NumberFormatException nfe) {
