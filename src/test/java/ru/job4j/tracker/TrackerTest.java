@@ -1,11 +1,21 @@
 package ru.job4j.tracker;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.*;
 import org.hamcrest.core.IsNull;
+import org.hamcrest.collection.IsEmptyCollection;
+import java.util.List;
+import java.util.ArrayList;
+//import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+//import static org.hamcrest.MatcherAssert.assertThat;
+
 
 
 public class TrackerTest {
@@ -25,15 +35,15 @@ public class TrackerTest {
         tracker.add(item5);
         //tracker.findAll();
         tracker.findAll();
-        Item[] forTest = new Item[tracker.getPosition()];
-        Item[] test = new Item[tracker.getPosition()];
+        List<Item> forTest = new ArrayList<>();
+        List<Item> test = new ArrayList<>();
         test = tracker.findAll();
-        forTest[0] = item1;
-        forTest[1] = item2;
-        forTest[2] = item3;
-        forTest[3] = item4;
-        forTest[4] = item5;
-        assertArrayEquals(test, forTest);
+        forTest.add(item1);
+        forTest.add(item2);
+        forTest.add(item3);
+        forTest.add(item4);
+        forTest.add(item5);
+        assertThat(test, is(forTest));
 
     }
 
@@ -50,11 +60,17 @@ public class TrackerTest {
         tracker.add(item3);
         tracker.add(item4);
         tracker.add(item5);
-        Item[] test = new Item[2];
+
+        List<Item> forTest = new ArrayList<>();
+        List<Item> test = new ArrayList<>();
+        test = tracker.findAll();
+
+        forTest.add(item4);
+        forTest.add(item5);
+
         test = tracker.findByName("test4");
-        Item[] forTest = new Item[2];
-        forTest[0] = item4;
-        forTest[1] = item5;
+
+
         assertThat(test, is(forTest));
     }
 
@@ -76,6 +92,7 @@ public class TrackerTest {
         Item result = tracker.findById(item.getId());
         assertThat(result, (is(IsNull.nullValue())));
     }
+
     @Test
     public void whenReplace() {
         Tracker tracker = new Tracker();
@@ -86,6 +103,7 @@ public class TrackerTest {
         tracker.replace(id, bugWithDesc);
         assertThat(tracker.findById(id).getName(), is("Bug with description"));
     }
+
     @Test
     public void whenDelete() {
         Tracker tracker = new Tracker();
