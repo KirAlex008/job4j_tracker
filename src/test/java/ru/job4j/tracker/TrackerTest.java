@@ -1,20 +1,15 @@
 package ru.job4j.tracker;
 
-import org.junit.Ignore;
+
 import org.junit.Test;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
-import static org.junit.Assert.*;
 import org.hamcrest.core.IsNull;
-import org.hamcrest.collection.IsEmptyCollection;
+
 import java.util.List;
 import java.util.ArrayList;
-//import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
-import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
-//import static org.hamcrest.MatcherAssert.assertThat;
+
 
 
 
