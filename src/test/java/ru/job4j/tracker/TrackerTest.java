@@ -17,7 +17,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindAllItemThenTrackerHasnotNull() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item1 = new Item("test1");
         Item item2 = new Item(null);
         Item item3 = new Item("test3");
@@ -44,7 +44,7 @@ public class TrackerTest {
 
     @Test
     public void whenfindByNameItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item1 = new Item("test1");
         Item item2 = new Item(null);
         Item item3 = new Item("test3");
@@ -71,7 +71,7 @@ public class TrackerTest {
 
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         Item result = tracker.findById(item.getId());
@@ -80,7 +80,7 @@ public class TrackerTest {
 
     @Test
     public void whenItemNotExistThenNull() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item item = new Item("test1");
         tracker.add(item);
         tracker.delete(item.getId());
@@ -90,7 +90,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
@@ -101,7 +101,7 @@ public class TrackerTest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        MemTracker tracker = new MemTracker();
         Item bug = new Item("Bug");
         tracker.add(bug);
         String id = bug.getId();
