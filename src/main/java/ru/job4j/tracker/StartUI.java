@@ -10,7 +10,7 @@ public class StartUI {
         while (run) {
             this.showMenu(actions);
             int select = input.askInt("Select: ", 7);
-            UserAction action = actions.get(select);
+       Sta     UserAction action = actions.get(select);
             run = action.execute(input, tracker);
 
         }*/
