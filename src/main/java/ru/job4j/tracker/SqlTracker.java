@@ -34,24 +34,21 @@ public class SqlTracker implements Store {
     @Override
     public Item add(Item item) {
         ResultSet rs;
-        try (PreparedStatement st = cn.prepareStatement("insert into items(name) values(?)", Statement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement st = cn.prepareStatement("insert into items(name) values(?)", PreparedStatement.RETURN_GENERATED_KEYS)) {
             st.setString(1, item.getName());
             st.executeUpdate();
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
-        try (PreparedStatement subSt = cn.prepareStatement("SELECT id FROM items where name=?")) {
-            subSt.setString(1, item.getName());
-            rs = subSt.executeQuery();
+            rs = st.getGeneratedKeys();
             while (rs.next()) {
                 int id = rs.getInt(1);
                 String stId = Integer.toString(id);
                 item.setId(stId);
-                //System.out.println(item.getName() + " " + item.getId() + "TEST");
+                //System.out.println(item.getName() + " " + item.getId() + " TEST");
             }
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
+
+
         return item;
     }
 
