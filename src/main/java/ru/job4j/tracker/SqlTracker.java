@@ -9,6 +9,10 @@ import java.util.Properties;
 public class SqlTracker implements Store {
     private Connection cn;
 
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -31,7 +35,7 @@ public class SqlTracker implements Store {
         }
     }
 
-    @Override
+   /* @Override
     public Item add(Item item) {
         ResultSet rs;
         try (PreparedStatement st = cn.prepareStatement("insert into items(name) values(?)", PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -42,14 +46,31 @@ public class SqlTracker implements Store {
                 int id = rs.getInt(1);
                 String stId = Integer.toString(id);
                 item.setId(stId);
-                //System.out.println(item.getName() + " " + item.getId() + " TEST");
+                System.out.println(item.getName() + " " + item.getId() + " TEST");
             }
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
-
-
         return item;
+    }*/
+
+    @Override
+    public Item add(Item item) {
+        try (final PreparedStatement statement = this.cn
+                .prepareStatement("insert into items (name) values (?)", Statement.RETURN_GENERATED_KEYS)) {
+            statement.setString(1, item.getName());
+            //statement.setString(2, item.getDesc());
+            statement.executeUpdate();
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getString(1));
+                    return item;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new IllegalStateException("Could not create new user");
     }
 
     @Override

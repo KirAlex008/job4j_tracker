@@ -49,7 +49,7 @@ public class StartUI {
         actions.add(new ExitAction());
         new StartUI().init(validate, tracker, actions);*/
 
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         Input validate = new ValidateInput(
                 new ConsoleInput());
         try (Store tracker = new SqlTracker()) {
@@ -67,5 +67,5 @@ public class StartUI {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

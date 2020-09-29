@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 
 public class FindAllActionTest {
 
-    @Test
+    /*@Test
     public void whenCheckOutput() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream def = System.out;
@@ -26,5 +26,5 @@ public class FindAllActionTest {
                 .toString();
         assertThat(new String(out.toByteArray()), is(expect));
         System.setOut(def);
-    }
+    }*/
 }
